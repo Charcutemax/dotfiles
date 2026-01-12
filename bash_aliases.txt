@@ -1,0 +1,14 @@
+# ls aliases
+alias ls='ls --color=auto'
+alias la='ls -Fa'
+alias l='ls -oFhv --time-style=long-iso'
+alias ll='ls -oFavh --time-style=long-iso'
+alias lh='ls -Fd .?*'
+alias llh='ls -oFd .?* --time-style=long-iso'
+
+# Clear alias
+alias cls='clear'
+
+# Making and removing directories
+alias md='mkdir -pv'
+alias rm='rm -Iv'
