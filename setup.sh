@@ -1,12 +1,43 @@
 #!/usr/bin/env bash
 
 set -euo pipefail
+shopt -s nullglob
 
 SCRIPT_DIR="$(dirname "$(realpath "${BASH_SOURCE[0]}")")"
 CONFIG_DIR="$HOME/.config"
 
 err() {
   echo "[$(date +'%Y-%m-%dT%H:%M:%S%z')]: $*" >&2
+}
+
+copy() {
+
+  local source="$1"
+  local target="$2"
+  local name="$3"
+
+  if [[ -e $target ]]; then
+
+    read -p "$name already exists. Replace? [y/N]: " -n 1 -r
+    echo
+
+    if [[ $REPLY == "y" || $REPLY == "Y" ]]; then
+
+      rm -fr "$target"
+      echo "Removed ($target)"
+
+    else
+
+      echo "Skipped ($name)"
+      return
+    
+    fi
+
+  fi
+
+  cp -r "$source" "$target"
+  echo "Copied ($source --> $target)"
+  
 }
 
 if [[ $OSTYPE == "linux"* ]]; then
@@ -26,63 +57,18 @@ else
 
 fi
 
-if [[ -f $ALIASES_TARGET ]]; then
+# Copy alias file
+copy "$ALIASES_FILE" "$ALIASES_TARGET" "$(basename "$ALIASES_FILE")"
 
-  read -p "ALIASES_TARGET ($ALIASES_TARGET) already exists. Replace? [y/N]: " -n 1 -r
-  echo
-  
-  if [[ $REPLY == "y" || $REPLY == "Y" ]]; then
-
-    rm -fr "$ALIASES_TARGET"
-    echo "Removed ($ALIASES_TARGET)"
-
-    cp "$ALIASES_FILE" "$ALIASES_TARGET"
-    echo "Copied ($ALIASES_FILE --> $ALIASES_TARGET)"
-
-  else
-
-    echo "Skipped ($ALIASES_FILE)"
-
-  fi
-
-else
-
-  cp "$ALIASES_FILE" "$ALIASES_TARGET"
-  echo "Copied ($ALIASES_FILE --> $ALIASES_TARGET)"
-
-fi
+# Create .config if not already there.
+mkdir -p "$CONFIG_DIR"
 
 for item in "$SCRIPT_DIR"/config/*; do
   
-  target=$(basename "$item")
+  target_name=$(basename "$item")
 
-  if [[ -e $CONFIG_DIR/$target ]]; then
-  
-    read -p "$target already exists in .config. Replace? [y/N]: " -n 1 -r
-    echo
-
-    if [[ $REPLY == "y" || $REPLY == "Y" ]]; then
-
-      rm -fr "${CONFIG_DIR:?}/${target:?}"
-      echo "Removed (${CONFIG_DIR:?}/${target:?})"
-
-      cp -r "$item" "$CONFIG_DIR/$target"
-      echo "Copied (./config/$target --> $CONFIG_DIR/$target)"
-    
-    else
-
-      echo "Skipped (./config/$target)"
-    
-    fi
-
-  else
-
-    cp -r "$item" "$CONFIG_DIR/$target"
-    echo "Copied (./config/$target --> $CONFIG_DIR/$target)"
-
-  fi
+  copy "$item" "${CONFIG_DIR:?}/${target_name:?}" "$target_name"
 
 done
 
 echo "Setup complete"
-exit 0
