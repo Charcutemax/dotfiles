@@ -64,7 +64,7 @@ for item in "$SCRIPT_DIR"/config/*; do
     if [[ $REPLY == "y" || $REPLY == "Y" ]]; then
 
       rm -fr "${CONFIG_DIR:?}/${target:?}"
-      echo "Removed ($CONFIG_DIR/$target)"
+      echo "Removed (${CONFIG_DIR:?}/${target:?})"
 
       cp -r "$item" "$CONFIG_DIR/$target"
       echo "Copied (./config/$target --> $CONFIG_DIR/$target)"
