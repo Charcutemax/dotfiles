@@ -16,7 +16,7 @@ copy() {
   local target="$2"
   local name="$3"
 
-  if [[ -e $target ]]; then
+  if [[ -e "$target" ]]; then
 
     read -p "$name already exists. Replace? [y/N]: " -n 1 -r
     echo
