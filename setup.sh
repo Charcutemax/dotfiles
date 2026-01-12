@@ -60,6 +60,16 @@ fi
 # Copy alias file
 copy "$ALIASES_FILE" "$ALIASES_TARGET" "$(basename "$ALIASES_FILE")"
 
+# Copy mac specific aliases
+if [[ $OSTYPE == "darwin"* ]]; then
+  
+  MAC_ALIASES_FILE="$SCRIPT_DIR/mac_aliases.txt"
+  MAC_ALIASES_TARGET="$HOME/.mac_aliases"
+
+  copy "$MAC_ALIASES_FILE" "$MAC_ALIASES_TARGET" "$(basename "$MAC_ALIASES_FILE")"
+
+fi
+
 # Create .config if not already there.
 mkdir -p "$CONFIG_DIR"
 
