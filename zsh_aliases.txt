@@ -1,10 +1,10 @@
 # gls aliases
 alias ls='gls --color=auto'
-alias la='gls -Fa'
-alias l='gls -oFhv --time-style=long-iso'
-alias ll='gls -oFavh --time-style=long-iso'
-alias lh='gls -Fd .?*'
-alias llh='gls -oFd .?* --time-style=long-iso'
+alias la='gls -Fa --color=auto'
+alias l='gls -oFhv --time-style=long-iso --color=auto'
+alias ll='gls -oFavh --time-style=long-iso --color=auto'
+alias lh='gls -Fd .?* --color=auto'
+alias llh='gls -oFd .?* --time-style=long-iso --color=auto'
 
 # Clear alias
 alias cls='clear'
