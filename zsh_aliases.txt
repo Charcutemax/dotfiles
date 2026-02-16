@@ -1,10 +1,24 @@
+# explicit ls aliases
+# alias ls='/usr/bin/ls --color=always'
+# alias la='/usr/bin/ls -Fa --color=always'
+# alias l='/usr/bin/ls -oFhv --color=always --time-style=long-iso'
+# alias ll='/usr/bin/ls -oFahv --color=always --time-style=long-iso'
+
 # gls aliases
-alias ls='gls --color=auto'
-alias la='gls -Fa --color=auto'
-alias l='gls -oFhv --time-style=long-iso --color=auto'
-alias ll='gls -oFavh --time-style=long-iso --color=auto'
-alias lh='gls -Fd .?* --color=auto'
-alias llh='gls -oFd .?* --time-style=long-iso --color=auto'
+# alias ls='gls --color=auto'
+# alias la='gls -Fa --color=auto'
+# alias l='gls -oFhv --time-style=long-iso --color=auto'
+# alias ll='gls -oFavh --time-style=long-iso --color=auto'
+# alias lh='gls -Fd .?* --color=auto'
+# alias llh='gls -oFd .?* --time-style=long-iso --color=auto'
+
+# ls aliases
+alias ls='eza --color=always --icons'
+alias la='eza -a --color=always --icons'
+alias l='eza -l --color=always --group-directories-first --icons --time-style=long-iso'
+alias ll='eza -la --color=always --group-directories-first --icons --time-style=long-iso'
+alias tree='eza --tree'
+
 
 # Clear alias
 alias cls='clear'
@@ -12,3 +26,6 @@ alias cls='clear'
 # Making and removing directories
 alias md='mkdir -pv'
 alias rm='rm -Iv'
+
+# Opencode aliases
+alias oc="opencode"
