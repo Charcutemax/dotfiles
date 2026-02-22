@@ -1,15 +1,11 @@
-# explicit ls aliases
-# alias ls='/usr/bin/ls --color=always'
-# alias la='/usr/bin/ls -Fa --color=always'
-# alias l='/usr/bin/ls -oFhv --color=always --time-style=long-iso'
-# alias ll='/usr/bin/ls -oFahv --color=always --time-style=long-iso'
-
 # ls aliases
 alias ls='eza --color=always --icons'
+alias l1='eza --color=always --icons -1'
 alias la='eza -a --color=always --icons'
 alias l='eza -l --color=always --group-directories-first --icons --time-style=long-iso'
 alias ll='eza -la --color=always --group-directories-first --icons --time-style=long-iso'
-alias tree='eza --tree'
+alias lt='eza -aT --color=always --group-directories-first --icons'
+alias tree='eza -aT --color=always --group-directories-first --icons'
 
 # Clear alias
 alias cls='clear'
@@ -21,10 +17,6 @@ alias rm='rm -Iv'
 # pacman aliases
 alias Sy='sudo pacman -Sy'
 alias Qu='pacman -Qu'
-
-# Directory aliases
-alias games='cd /home/emilico/SecondDrive/Games'
-alias proj='cd /home/emilico/SecondDrive/Projects'
 
 # Python aliases
 alias py='/usr/bin/env python'
